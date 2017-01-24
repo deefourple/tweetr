@@ -10,42 +10,30 @@
  padding-bottom: 20px;
 }
 
-h2 {
+.new-tweet > h2 {
   text-align: left;
   border-bottom: 1px solid black;
 }
 
-form {
+.new-tweet > form {
   position: relative;
   width: 100%;
 }
 
-textarea {
+.new-tweet > form > textarea {
   overflow: auto;
-  resize: horizontal;
+  resize: vertical;
   width: 100%;
 }
 
-input {
+.new-tweet > form >  input {
   position: relative;
   float: left;
 }
 
-.counter {
+.new-tweet > form >  .counter {
   float: right;
   font-size: 0.9em;
   margin-top: 4px;
   margin-right: 5px;
 }
-
-
-
-/*
-stretch text area
-padded text inside textarea
-*/
-
-/*line below heading
-right aligned counter
-slightly rounded borders
-spaced by 2em on sides and centered*/
