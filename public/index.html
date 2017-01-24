@@ -19,6 +19,10 @@
     <script type="text/javascript" src="/scripts/app.js"></script>
     <!-- Character Counter JS -->
     <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
+    <!-- Hovering Buttons JS -->
+    <script type="text/javascript" src="/scripts/hover-buttons.js"></script>
+    <!-- Font Awesome - for buttons -->
+    <script src="https://use.fontawesome.com/1565f3693f.js"></script>
   </head>
 
   <body>
@@ -39,19 +43,31 @@
           <span class="counter">140</span>
         </form>
       </section>
+
+      <section class="tweet-container">
+        <article>
+        <header class="tweet-title">
+          <!--The background colour for the header should be different than the main body area-->
+          <img id="pic" src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/8/005/0b8/3ea/12c55d0.jpg">
+          <h2 id="fullName"> Named Name</h2>
+          <h3 id="userName"> @Name</h3>
+        </header>
+        <footer class="tweet-body">
+          <p>
+            This is a tweet example that is under 140 characters
+          </p>
+
+          <h4>14 days ago</h4>
+            <i class="fa fa-heart fa-lg hover-buttons" aria-hidden="true"></i>
+            <i class="fa fa-retweet fa-lg hover-buttons" aria-hidden="true"></i>
+            <i class="fa fa-flag fa-lg hover-buttons" aria-hidden="true"></i>
+        </footer>
+        </article>
+      </section>
     </main>
 
 
-    <section class="tweet-container">
-      <article>
-      <header class="tweet-title">
-        <!--The background colour for the header should be different than the main body area-->
-      </header>
-      <footer class="tweet-body">
-
-      </footer>
-      </article>
-    </section>
+<!--- flag| re-tweet |like(heart)|
 
   </body>
 </html>
