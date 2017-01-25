@@ -3,121 +3,91 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-var data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": {
-        "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-        "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-        "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-      },
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": {
-        "small":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
-        "regular": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png",
-        "large":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
-      },
-      "handle": "@rd" },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  },
-  {
-    "user": {
-      "name": "Johann von Goethe",
-      "avatars": {
-        "small":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
-        "regular": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
-        "large":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
-      },
-      "handle": "@johann49"
-    },
-    "content": {
-      "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit."
-    },
-    "created_at": 1461116232227
-  }
-];
 
-var tweetData = {
-  "user": {
-    "name": "Newton",
-    "avatars": {
-      "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-      "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-      "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
-    },
-    "handle": "@SirIsaac"
-  },
-  "content": {
-    "text": "If I have seen further it is by standing on the shoulders of giants"
-  },
-  "created_at": 1461116232227
+ var hover = function() {
+    $('.tweet-container article').on("mouseenter", function(event) {
+    let tweetArticle = $(event.target);
+    let buttons = tweetArticle.find('.hover-buttons');
+    let profilePic = tweetArticle.find('.pic');
+    let fullName = tweetArticle.find('.fullName');
+    let userName = tweetArticle.find('.userName');
+    buttons.css("display", "inline")
+    profilePic.css("opacity", "1");
+    fullName.css("color", "#244751");
+    userName.css("color", "#bbb")
+  });
+  $('.tweet-container article').on("mouseleave", function(event) {
+    let tweetArticle = $(event.target);
+    let buttons = tweetArticle.find('.hover-buttons');
+    let profilePic = tweetArticle.find('.pic');
+    let fullName = tweetArticle.find('.fullName');
+    let userName = tweetArticle.find('.userName');
+    buttons.css("display", "none");
+    profilePic.css("opacity", "0.5");
+    fullName.css("color", "rgba(36, 71, 81, 0.5)");
+    userName.css("color", "rgba(186, 186, 186, 0.5)")
+  })
 }
+$(document).ready(function(){
+  fetchTweets()
 
-function createTweetElement(data) {
-  //go through the tweetData and parse the object info and store it in an article tag
-  let userName = data.user.name;
-  let avatarSmall = data.user.avatars.small;
-  let avatarMed = data.user.avatars.regular;
-  let avatarLarge = data.user.avatars.large;
-  let handle = data.user.handle;
-  let content = data.content.text;
-  let created = data.created_at;
+//create a hidden flash message that fades in when a condition is met
+  let form = $('.container form');
+  form.on('submit', function(event) {
+     if ($('#textField').val().length < 1){
+        event.preventDefault();
+        $('.flash').fadeIn(2000).css("display", "inline").fadeOut(2000);
+     } else if ($('#textField').val().length >= 140) {
+        event.preventDefault();
+        $('.flash2').fadeIn(2000).css("display", "inline").fadeOut(2000);
+     } else {
+    event.preventDefault();
+    // console.log($('#textField').val().length)
+    $('.tweet-container').empty();
+    $.ajax('/tweets', {method: "post", data: $('#textField')})
+    .then((result) => {
+      fetchTweets()
 
-  const calculatePostDate = function(postDate) {
-    let present = Date.now()
-    let past = postDate;
-    let days = Math.floor((present - past) / 86400000)
-    if (days <= 1) {
-      return `Posted ${days} day ago`
-    } else {
-      return `Posted ${days} day's ago`
+    })
+    .fail((error) => console.error(error))
     }
-  }
+  })
+});
 
-  return $(`<section class="tweet-container">
-              <article>
-                <header class="tweet-title">
-                  <img class="pic" src=${avatarSmall}>
-                  <h2 class="fullName"> ${userName}</h2>
-                  <h3 class="userName"> ${handle}</h3>
-                </header>
-                <footer class="tweet-body">
-                  <p>${content}</p>
-                  <h4>${calculatePostDate(created)}</h4>
-                    <i class="fa fa-heart fa-lg hover-buttons" aria-hidden="true"></i>
-                    <i class="fa fa-retweet fa-lg hover-buttons" aria-hidden="true"></i>
-                    <i class="fa fa-flag fa-lg hover-buttons" aria-hidden="true"></i>
-                </footer>
-              </article>
-            </section>`)
+function fetchTweets() {
+   $.getJSON('/tweets')
+  .then((tweets) => renderTweets(tweets))
 }
 
 function renderTweets(tweets) {
   tweets.forEach(function(tweet){
    let newTweet = createTweetElement(tweet)
-   let $container = $('.container')
-   $container.append(newTweet);
+   $('.tweet-container').prepend(newTweet);
   })
+  hover()
 }
 
+//create conditional statement if(string is empty ""), else if(too many characters) else (run tweet)
+function createTweetElement(twts){
+  let userName = twts.user.name;
+  let avatarSmall = twts.user.avatars.small;
+  let handle = twts.user.handle;
+  let content = twts.content.text;
+  let created = twts.created_at;
 
-$(document).ready(function() {
-
-  const $tweet = createTweetElement(tweetData);
-  let $container = $('.container')
-  $container.append($tweet);
-  renderTweets(data)
-})
+  let newTweet = $(` <article>
+                     <header class="tweet-title">
+                       <img class="pic" src=${avatarSmall}>
+                       <h2 class="fullName"> ${userName}</h2>
+                       <h3 class="userName"> ${handle}</h3>
+                      </header>
+                      <footer class="tweet-body">
+                        <p>${content}</p>
+                        <h4>${created}</h4>
+                          <i class="fa fa-heart fa-lg hover-buttons" aria-hidden="true"></i>
+                          <i class="fa fa-retweet fa-lg hover-buttons" aria-hidden="true"></i>
+                          <i class="fa fa-flag fa-lg hover-buttons" aria-hidden="true"></i>
+                      </footer>
+                    </article>`)
+return newTweet;
+    }

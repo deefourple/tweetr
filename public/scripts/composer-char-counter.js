@@ -5,7 +5,6 @@ $(document).ready(function() {
     let charCount = $(this).val().length;
     //set counter to subtract from the length of the textarea
     let currentCount = screenTotal - charCount;
-
     //display the currentCount variable on the screen
     $('.counter').text(currentCount);
     if (currentCount < 0) {

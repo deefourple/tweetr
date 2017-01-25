@@ -37,8 +37,6 @@ main {
 }
 
 .tweet-container {
-  border: 2px solid #c4c5c4;
-  border-radius: 5px;
   display: relative;
 }
 
@@ -100,10 +98,31 @@ main {
   color: #3de5c3;
 }
 
+.flash {
+  display: none;
+  position: absolute;
+  top: 260px;
+  left: 100px;
+  font-size: 1.3em;
+  color: red;
+}
 
 
+.flash2 {
+  display: none;
+  position: absolute;
+  top: 260px;
+  left: 100px;
+  font-size: 1.3em;
+  color: red;
+}
 
+.tweet-container article {
+  margin: 0 0 50px 0;
+  border: 2px solid #c4c5c4;
+  border-radius: 5px;
 
+}
 
 
 
