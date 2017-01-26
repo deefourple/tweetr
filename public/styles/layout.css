@@ -14,7 +14,6 @@ html {
  * Global layout stuff
  */
 
-
 body {
   margin: 0;
   color: #244751;
@@ -33,7 +32,7 @@ main {
   background-color: white;
   height: 100%;
   display: block;
-  padding: 200px 2em;
+  padding: 150px 2em;
 }
 
 .tweet-container {
@@ -52,6 +51,10 @@ main {
   opacity: 0.5;
 }
 
+article.tweet:hover  img {
+  opacity: 1;
+}
+
 .tweet-title > h2 {
   margin: 0;
   display: inline-block;
@@ -59,6 +62,10 @@ main {
   line-height: 2rem;
   vertical-align: top;
   color: rgba(36, 71, 81, 0.5);
+}
+
+article.tweet:hover  h2 {
+  color: #244751;
 }
 
 .tweet-title > h3 {
@@ -70,6 +77,11 @@ main {
   margin: 0;
   line-height: 2rem;
 }
+
+article.tweet:hover  h3 {
+  color: #bbb;
+}
+
 
 .tweet-body {
   line-height: 200%;
@@ -98,10 +110,14 @@ main {
   color: #3de5c3;
 }
 
+article.tweet:hover .hover-buttons {
+  display: inline;
+}
+
 .flash {
   display: none;
   position: absolute;
-  top: 260px;
+  top: 180px;
   left: 100px;
   font-size: 1.3em;
   color: red;
@@ -111,8 +127,8 @@ main {
 .flash2 {
   display: none;
   position: absolute;
-  top: 260px;
-  left: 100px;
+  top: 180px;
+  right: 100px;
   font-size: 1.3em;
   color: red;
 }
@@ -121,10 +137,29 @@ main {
   margin: 0 0 50px 0;
   border: 2px solid #c4c5c4;
   border-radius: 5px;
-
 }
 
+.compose-button {
+    float: right;
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin: 7px;
+    background-color: #e8fffd;
+    color: #00a087;
+    font-size: 1.25em;
+    text-decoration: none;
+}
 
+.compose-button:hover {
+  background-color: #fff;
+  color: #000;
+  text-decoration: none;
+}
+
+.tweet-body p {
+  word-wrap: break-word;
+
+}
 
 
 
