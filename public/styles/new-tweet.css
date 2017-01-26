@@ -32,7 +32,7 @@
   float: left;
 }
 
-.new-tweet > form >  .counter {
+.new-tweet > form > .counter {
   float: right;
   font-size: 0.9em;
   margin-top: 4px;

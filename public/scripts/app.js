@@ -44,7 +44,6 @@ function escape(str) {
   return div.innerHTML;
 }
 
-
 function fetchTweets() {
    $.getJSON('/tweets')
   .then((tweets) => renderTweets(tweets))
@@ -56,8 +55,6 @@ function renderTweets(tweets) {
    $('.tweet-container').prepend(newTweet);
   })
 }
-
-
 
 function timeConverter(postTime) {
   let present = Date.now();
@@ -85,7 +82,7 @@ function createTweetElement(twts){
   let content = twts.content.text;
   let created = timeConverter(twts.created_at);
 
-  let newTweet = $(` <article class="tweet">
+  let newTweet = $(`<article class="tweet">
                      <header class="tweet-title">
                        <img class="pic" src=${avatarSmall}>
                        <h2 class="fullName"> ${escape(userName)}</h2>
@@ -99,5 +96,5 @@ function createTweetElement(twts){
                           <i class="fa fa-flag fa-lg hover-buttons" aria-hidden="true"></i>
                       </footer>
                     </article>`)
-return newTweet;
-    }
+     return newTweet;
+  }
