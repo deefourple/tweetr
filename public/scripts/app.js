@@ -38,6 +38,13 @@ $(document).ready(function(){
   })
 });
 
+function escape(str) {
+  var div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
+
+
 function fetchTweets() {
    $.getJSON('/tweets')
   .then((tweets) => renderTweets(tweets))
@@ -49,6 +56,8 @@ function renderTweets(tweets) {
    $('.tweet-container').prepend(newTweet);
   })
 }
+
+
 
 function timeConverter(postTime) {
   let present = Date.now();
@@ -79,11 +88,11 @@ function createTweetElement(twts){
   let newTweet = $(` <article class="tweet">
                      <header class="tweet-title">
                        <img class="pic" src=${avatarSmall}>
-                       <h2 class="fullName"> ${userName}</h2>
-                       <h3 class="userName"> ${handle}</h3>
+                       <h2 class="fullName"> ${escape(userName)}</h2>
+                       <h3 class="userName"> ${escape(handle)}</h3>
                       </header>
                       <footer class="tweet-body">
-                        <p>${content}</p>
+                        <p>${escape(content)}</p>
                         <h4>${created}</h4>
                           <i class="fa fa-heart fa-lg hover-buttons" aria-hidden="true"></i>
                           <i class="fa fa-retweet fa-lg hover-buttons" aria-hidden="true"></i>
