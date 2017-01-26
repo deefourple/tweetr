@@ -1,20 +1,17 @@
-nav#nav-bar {
+nav {
   position: fixed;
   height: 80px;
   width: 100%;
   background-color: #00a087;
   color: #e8fdff;
   padding: 0 2em;
-  z-index: 1;
-}
+  z-index: 1; }
+  nav img {
+    height: 100%;
+    margin-right: 10px;
+    vertical-align: middle; }
+  nav .header {
+    font-size: 2em;
+    vertical-align: middle; }
 
-nav#nav-bar > img.logo {
-  height: 100%;
-  margin-right: 10px;
-  vertical-align: middle;
-}
-
-nav#nav-bar > span.header {
-  font-size: 2em;
-  vertical-align: middle;
-}
+/*# sourceMappingURL=nav.css.map */
