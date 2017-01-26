@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $('#textField').on("keyup", function() {
+  $('#textField').on("input", function() {
     let screenTotal = 140;
     //select the textarea and find its length
     let charCount = $(this).val().length;
