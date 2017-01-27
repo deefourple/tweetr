@@ -5,7 +5,7 @@ nav {
   background-color: #00a087;
   color: #e8fdff;
   padding: 0 2em;
-  z-index: 1; }
+  z-index: 3; }
   nav img {
     height: 100%;
     margin-right: 10px;
@@ -13,5 +13,8 @@ nav {
   nav .header {
     font-size: 2em;
     vertical-align: middle; }
+    @media screen and (max-width: 700px) {
+      nav .header {
+        color: yellow; } }
 
 /*# sourceMappingURL=nav.css.map */

@@ -9,6 +9,9 @@
  display: none;
  padding-bottom: 35px;
  margin-bottom: 50px;
+  @media screen and (max-width: 700px) {
+    padding-top: 10px;
+  }
    h2 {
   text-align: left;
   border-bottom: 1px solid black;
@@ -19,7 +22,13 @@
   overflow: auto;
   resize: vertical;
   width: 100%;
+  @media screen and (max-width: 700px) {
+    font-size: 1.4em;
+  }
   } input {
+    @media screen and (max-width: 700px) {
+  font-size: 1.2em;
+    }
   position: relative;
   float: left;
   } .counter {
@@ -27,5 +36,8 @@
   font-size: 0.9em;
   margin-top: 4px;
   margin-right: 5px;
+    @media screen and (max-width: 700px) {
+      font-size: 1.2em;
+    }
   }
 }
