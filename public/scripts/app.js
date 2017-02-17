@@ -57,22 +57,23 @@ function renderTweets(tweets) {
 }
 
 function timeConverter(postTime) {
-  let present = Date.now();
-  let days = Math.floor((present - postTime) / 86400000);
+  const present = Date.now();
+  const days = Math.floor((present - postTime) / 86400000);
+
   if (days > 1) {
     return `${days} days ago`;
   } else if (days === 1) {
     return `${days} day ago`;
-  } else {
-    let hours = Math.floor(days / 24);
-    if (hours > 1) {
-      return `${hours} hours ago`;
-    } else if (hours === 1) {
-      return `${hours} hour ago`;
-    } else {
-      return `less than 1 hour ago`;
-    }
   }
+
+  const hours = Math.floor(days / 24);
+  if (hours > 1) {
+    return `${hours} hours ago`;
+  } else if (hours === 1) {
+    return `${hours} hour ago`;
+  }
+
+  return `less than 1 hour ago`;
 }
 
 function createTweetElement(twts){
